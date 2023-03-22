@@ -1,11 +1,14 @@
 require('dotenv').config();
 require('express-async-errors');
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
+const multer = require('multer');
 
 const app = express();
 
-const PORT = process.env.PORT || 3001;
+const upload = multer();
+
+const PORT = process.env.APP_PORT || 3001;
 
 app.use(express.json());
 app.use(cors());
