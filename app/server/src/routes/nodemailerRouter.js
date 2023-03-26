@@ -1,8 +1,11 @@
 const { Router } = require('express');
+const multer = require('multer');
 const nodemailerController = require('../controllers/nodemailerController');
 
 const mailRouter = Router();
 
-mailRouter.post('/send-mail', nodemailerController.sendMail);
+const upload = multer();
+
+mailRouter.post('/send-mail', upload.single('file'), nodemailerController.sendMail);
 
 module.exports = mailRouter;
