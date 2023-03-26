@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { sendMail } from '../services/serverConnection';
 import './MailForm.css';
 
 function MailForm() {
@@ -18,6 +19,14 @@ function MailForm() {
   const handleClick = (event) => {
     event.preventDefault();
     console.log(fields);
+    send();
+  }
+
+  const send = async () => {
+    const formData = new FormData();
+    Object.keys(fields).forEach(key => formData.append(key, fields[key]));
+    const teste = await sendMail(formData, formData._boundary);
+    console.log(teste);
   }
 
   return (
